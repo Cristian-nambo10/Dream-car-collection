@@ -1,5 +1,6 @@
 from django.urls import reverse
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Car(models.Model):
@@ -8,6 +9,7 @@ class Car(models.Model):
     hp = models.IntegerField()
     torque = models.IntegerField()
     weight = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.model
