@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Car
 
 # Create your views here.
 def home(request):
@@ -6,3 +7,11 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def car_index(request):
+    cars = Car.objects.all()
+    return render(request, 'cars/index.html', {'cars': cars})
+
+def cars_detail(request, car_id):
+    car = Car.objects.get(id=car_id)
+    return render(request, 'cars/details.html', { 'car': car})

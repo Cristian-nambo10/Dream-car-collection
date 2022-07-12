@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Future Car List</h1>
+
+{% for car in cars %}
+<div class="card">
+  <a href="{% url 'detail' car.id %}">
+    <div class="card-content">
+      <span class="card-title">{{ car.model }}</span>
+      <p>Make: {{ car.make }}</p>
+      <p>Model: {{ car.model }}</p>
+      <p>Curb Weight: {{ car.weight }}</p>
+    </div>
+  </a>
+</div>
+
+{% endfor %} {% endblock %}
