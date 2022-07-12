@@ -2,6 +2,7 @@ from distutils.log import error
 from django.shortcuts import redirect, render
 from .models import Car
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
@@ -11,8 +12,9 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def car_index(request):
-    cars = Car.objects.all()
+    cars = Car.objects.filter(user=request.user)
     return render(request, 'cars/index.html', {'cars': cars})
 
 def cars_detail(request, car_id):
