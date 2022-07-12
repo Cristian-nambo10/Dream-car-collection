@@ -1,0 +1,37 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{% static 'css/styles.css' %}"
+    />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Car Collector</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="{% url 'home' %}" class="brand-logo">voiture de collection</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="#">My Collection</a></li>
+          <li><a href="#">Sign Up</a></li>
+        </ul>
+      </div>
+    </nav>
+    <main class="container">{% block content %} {% endblock %}</main>
+    <footer class="page-footer">
+      <div class="right">
+        All Rights Reserved, &copy; 2019 Cat Collector &nbsp;
+      </div>
+    </footer>
+  </body>
+</html>
