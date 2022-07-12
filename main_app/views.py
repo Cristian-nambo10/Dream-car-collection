@@ -7,6 +7,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth import login
 import boto3, uuid
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -25,10 +26,12 @@ def car_index(request):
     cars = Car.objects.filter(user=request.user)
     return render(request, 'cars/index.html', {'cars': cars})
 
+@login_required
 def cars_detail(request, car_id):
     car = Car.objects.get(id=car_id)
     return render(request, 'cars/details.html', { 'car': car})
 
+@login_required
 def add_photo(request, car_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
@@ -62,7 +65,7 @@ def signup(request):
         'error_messages': error_messages
     })
 
-class CarCreate(CreateView):
+class CarCreate(LoginRequiredMixin, CreateView):
     model = Car
     fields = ['make', 'model', 'hp', 'torque', 'weight']
     success_url = '/cars/'
@@ -71,10 +74,10 @@ class CarCreate(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class CarUpdate(UpdateView):
+class CarUpdate(LoginRequiredMixin, UpdateView):
     model = Car
     fields = ['hp', 'torque', 'weight']
 
-class CarDelete(DeleteView):
+class CarDelete(LoginRequiredMixin, DeleteView):
     model = Car
     success_url = '/cars/'
