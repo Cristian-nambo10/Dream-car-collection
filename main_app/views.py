@@ -1,10 +1,14 @@
+from calendar import c
 from distutils.log import error
 from django.shortcuts import redirect, render
 from .models import Car, Photo
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 from django.contrib.auth import login
 import boto3, uuid
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
 BUCKET = 'catcollector-avatar-cn'
@@ -26,7 +30,7 @@ def cars_detail(request, car_id):
     return render(request, 'cars/details.html', { 'car': car})
 
 def add_photo(request, car_id):
-    photo_file = request.Files.get('photo-file', None)
+    photo_file = request.FILES.get('photo-file', None)
     if photo_file:
         s3 = boto3.client('s3')
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
@@ -57,3 +61,20 @@ def signup(request):
         'form': form,
         'error_messages': error_messages
     })
+
+class CarCreate(CreateView):
+    model = Car
+    fields = ['make', 'model', 'hp', 'torque', 'weight']
+    success_url = '/cars/'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class CarUpdate(UpdateView):
+    model = Car
+    fields = ['hp', 'torque', 'weight']
+
+class CarDelete(DeleteView):
+    model = Car
+    success_url = '/cars/'
