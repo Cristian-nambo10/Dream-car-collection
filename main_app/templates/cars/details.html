@@ -11,7 +11,7 @@
           <p>Torque: {{ car.torque }}</p>
           <p>Weight: {{ car.weight }}</p>
         </div>
-        <div class="card-action">
+        <div class="card-action amber-text">
           <a href="{% url 'cars_update' car.id %}">Edit</a>
           <a href="{% url 'cars_delete' car.id %}">Delete</a>
         </div>
@@ -19,7 +19,7 @@
       {% for photo in car.photo_set.all %}
       <img src="{{photo.url}}" class="responsive-img card-panel" alt="{{car.model}}">
       {% empty %}
-      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+      <div class="card-panel amber-text center-align">No Photos Uploaded</div>
       {% endfor %}
       <form
        action="{% url 'add_photo' car.id %}"
@@ -30,7 +30,7 @@
       <!-- This name is refrenced back in views -->
       <input type="file" name="photo-file" />
       <br /><br />
-      <input type="submit" value="Upload Photo" class="btn">
+      <input type="submit" value="Upload Photo" class="btn amber darken-2">
       </form>
     </div>
 {% endblock %}

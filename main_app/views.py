@@ -1,7 +1,7 @@
 from calendar import c
 from distutils.log import error
 from django.shortcuts import redirect, render
-from .models import Car, Photo
+from .models import Car, Photo, Upgrade
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth import login
@@ -81,3 +81,7 @@ class CarUpdate(LoginRequiredMixin, UpdateView):
 class CarDelete(LoginRequiredMixin, DeleteView):
     model = Car
     success_url = '/cars/'
+
+class UpgradeList(ListView):
+    model = Upgrade
+    template_name = 'upgrades/index.html'

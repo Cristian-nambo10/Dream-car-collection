@@ -2,7 +2,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-image: url(images/nightrace.jpeg);
+    background-image: url(images/ferrari_supercar-1920x1080.jpeg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -11,4 +11,8 @@ body {
 
 main {
     flex: 1 0 auto;
+}
+
+.card {
+    max-width: 400px;
 }

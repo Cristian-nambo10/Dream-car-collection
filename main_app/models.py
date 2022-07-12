@@ -3,6 +3,18 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+class Upgrade(models.Model):
+    name = models.CharField(max_length=50)
+    power = models.IntegerField()
+    price = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.price} {self.name}'
+
+    def get_absolute_url(self):
+        return reverse('upgrades_detail', kwargs={'pk': self.id})
+
 class Car(models.Model):
     make = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
