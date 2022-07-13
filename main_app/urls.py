@@ -12,5 +12,5 @@ urlpatterns = [
     path('cars/<int:pk>/update', views.CarUpdate.as_view(), name='cars_update'),
     path('cars/<int:pk>/delete', views.CarDelete.as_view(), name='cars_delete'),
     path('upgrades/', views.UpgradeList.as_view(), name='upgrades_index'),
-    
+    path('cars/<int:car_id>/assoc_upgrade/<int:upgrade_id/', views.assoc_upgrade, name='assoc_upgrade')
 ]

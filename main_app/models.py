@@ -13,7 +13,7 @@ class Upgrade(models.Model):
         return f'{self.price} {self.name}'
 
     def get_absolute_url(self):
-        return reverse('upgrades_detail', kwargs={'pk': self.id})
+        return reverse('details', kwargs={'pk': self.id})
 
 class Car(models.Model):
     make = models.CharField(max_length=50)

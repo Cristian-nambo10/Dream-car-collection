@@ -27,9 +27,15 @@ def car_index(request):
     return render(request, 'cars/index.html', {'cars': cars})
 
 @login_required
-def cars_detail(request, car_id):
+def cars_detail(request, car_id,):
     car = Car.objects.get(id=car_id)
+    # upgrade = Upgrade.objects.get(id=upgrade_id)
+    # upgrades_car_doesnt_have = Upgrade.objects.exclude(id__in = car.upgrades.all().values_list('id'))
     return render(request, 'cars/details.html', { 'car': car})
+
+def assoc_upgrade(request, car_id, upgrade_id):
+    Car.objects.get(id=car_id).upgrades.add(upgrade_id)
+    return redirect('details', car_id=car_id)
 
 @login_required
 def add_photo(request, car_id):
