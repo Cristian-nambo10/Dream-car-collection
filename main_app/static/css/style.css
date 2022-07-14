@@ -2,10 +2,10 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-image: url(images/3d-Cool-Car-Wallpaper-High-Definition-Amazing-Colourful-.jpeg);
+    background-image: url(images/street.webp);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:cover;
     opacity: 0.9;
 }
 

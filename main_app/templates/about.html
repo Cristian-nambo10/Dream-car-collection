@@ -1,4 +1,4 @@
-{% extends 'base.html'%} {% block content %}
+{% extends 'base2.html'%} {% block content %}
 <style>
   p {
     font-size: 40px;
@@ -10,7 +10,7 @@
   }
 </style>
 <h1>Car Collector</h1>
-<hr />
+
 <p>
   We are a couple of passionate car enthusiast individuals and want to share our
   passion of collecting cars in real life to the Online world!<br />
@@ -20,5 +20,14 @@
   We can also see our vehicles stats and or customize them to fit our personal
   builds!
 </p>
+{% if user.is_authenticated %}
+<a href="{% url 'index' %}">
+<button class="btn-large amber">View Collection</button>
+</a>
+{% else %}
+<a href="{% url 'login' %}">
+<button class="btn-large amber">Get Started!</button>
+</a>
+{% endif %}
 
 {% endblock %}
