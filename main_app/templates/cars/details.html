@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {% block content %}
+
 <h1>Car Specs</h1>
 
 <div class="row">
@@ -35,29 +36,92 @@
       <!-- This name is refrenced back in views -->
       <input type="file" name="photo-file" />
       <br /><br />
-      <input type="submit" value="Upload Photo" class="btn" />
+      <input type="submit" value="Upload Photo" class="btn amber" />
     </form>
   </div>
-  <div class="col s6">
-    <h2>Upgrades Available</h2>
-    {% if upgrades.count %} {% for upgrade in upgrades.all %}
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title">
-          A <span style="color: {{ upgrade.name }}">{{ upgrade.power }}</span>
-          {{ upgrade.name }}
-        </span>
+  <div class="col s6" id="upwards">
+    <h1>Upgrades Available</h1>
+    <div class="card small">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img
+            class="activator"
+            src="https://cdn.shopify.com/s/files/1/1799/0047/products/TR-TW2006_1__med.jpg?v=1547583215"
+          />
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"
+            >Turbos<i class="material-icons right">More-Info</i></span
+          >
+          <p><a target="_blank" href="https://www.youtube.com/watch?v=bT7ka-NtCFw">How it Sounds?</a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"
+            >Turbos<i class="material-icons right">close</i></span
+          >
+          <p>
+            It is the job of the turbocharger to compress more air flowing into the
+            engine's cylinder. When air is compressed the oxygen molecules are packed
+            closer together. This increase in air means that more fuel can be added
+            for the same size naturally aspirated engine.
+          </p>
+        </div>
       </div>
-      <div class="card-action">
-        <form action="{% url 'assoc_upgrade' car.id upgrade.id %}" method="post">
-          {% csrf_token %}
-          <button type="submit" class="btn amber">Add</button>
-        </form>
+      
+      <div class="card small">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img
+            class="activator"
+            src="http://cdn.shopify.com/s/files/1/0701/2883/products/539_F150_Red_Front_800_1200x1200.jpg?v=1633206501"
+          />
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"
+            >Supercharger<i class="material-icons right">More-Info</i></span
+          >
+          <p><a target="_blank" href="https://www.youtube.com/watch?v=fKtkkD70oIo">How it Sounds?</a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"
+            >Supercharger<i class="material-icons right">close</i></span
+          >
+          <p>
+            Superchargers increase intake by compressing air above atmospheric
+            pressure without creating a vacuum. This forces more air into the engine,
+            providing a boost. With the additional air, more fuel can be added to the
+            charge, and the power of the engine is increased.
+          </p>
+        </div>
       </div>
-    </div>
-    {% endfor %} {% else %}
-    <h5>No Power :(</h5>
-    {% endif %}
-  </div>
+      
+      <div class="card small">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img
+            class="activator"
+            src="https://static.summitracing.com/global/images/prod/xlarge/nos-14761nos_fw_xl.jpg"
+          />
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"
+            >Nitrous<i class="material-icons right">More-Info</i></span
+          >
+          <p><a href="#">This is a link</a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"
+            >Nitrous<i class="material-icons right">close</i></span
+          >
+          <p>
+            Nitrous oxide (also known as dinitrogen monoxide or dinitrogen oxide in
+            geek speak) works by introducing extra oxygen into the intake charge. You
+            see, at 570 degrees F the oxygen breaks free and is added to the
+            combustion process. This allows for a greater amount of fuel to be added
+            and converted into energy.
+          </p>
+        </div>
+        <div class="card-action">
+          <a href="#">Edit</a>
+          <a href="#">Delete</a>
+        </div>
+      </div>
 </div>
 {% endblock %}
